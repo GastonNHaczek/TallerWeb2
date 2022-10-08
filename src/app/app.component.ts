@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'TP-TALLERWEB2';
+
+  constructor(protected router:Router){};
+  irHome(){
+    console.log('ejecutando redirect');
+ 
+    this.router.navigate(['/home']);
+  }
+  irProductos(){
+    console.log('ejecutando redirect');
+ 
+    this.router.navigate(['/productos']);
+  }
+  irCarrito(){
+    console.log('ejecutando redirect');
+ 
+    this.router.navigate(['/carrito']);
+  }
+  irCuenta(){
+    console.log('ejecutando redirect');
+ 
+    this.router.navigate(['/cuenta']);
+  }
+
 }
