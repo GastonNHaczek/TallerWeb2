@@ -1,1 +1,57 @@
-hola soy los productos
+<h1>Nuestos productos</h1>
+
+<app-error></app-error>
+<div class="jumbotron">
+    <form (ngSubmit)="buscarProducto()">
+        <div class="row">
+            <div class="col-lg-8">
+                <input type="text" class="form-control form-control-lg" [(ngModel)]="nombreProducto" name="producto"
+                    placeholder="Buscar producto">
+            </div>
+            <div class="col-lg-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block"> Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3">
+    <div class="col">
+        <div class="card h-100">
+            <img src="../../assets/slide.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Computadora</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="../../assets/slide4.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Mouse</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="../../assets/slide3.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Teclado</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+</div>
