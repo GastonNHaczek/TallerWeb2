@@ -1,1 +1,39 @@
-hola soy la cuenta
+<h1>PERFIL DEL USUARIO</h1>
+
+<div class="contenedor">
+<form (ngSubmit)="modificarDatos()" class="row g-2">
+<div class="datos">
+    <div class="col-md-5">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-md-5">
+      <label class="form-label">Apellido</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+</div>
+<div class="datos">
+    <div class="col-md-5">
+      <label class="form-label">Calle</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+    <div class="col-5">
+      <label class="form-label">Número</label>
+      <input type="text" class="form-control" disabled>
+    </div>
+</div>
+<div class="datos">
+    <div class="col-md-5">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" disabled>
+    </div>
+    <div class="col-md-5">
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" disabled>
+    </div>
+</div>
+    <div class="col-12 boton">
+      <button type="submit" class="btn btn-primary">Modificar Datos</button>
+    </div>
+  </form>
+</div>
