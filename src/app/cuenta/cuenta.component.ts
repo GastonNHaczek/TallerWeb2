@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
-  
+@Component({ 
   templateUrl: './cuenta.component.html',
   styleUrls: ['./cuenta.component.css']
 })
 export class Cuenta{
     
+  modificarDatos(){
+
+  }
 }
