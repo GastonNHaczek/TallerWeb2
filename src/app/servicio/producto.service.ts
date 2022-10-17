@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+export interface Producto {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  clasificacion: string;
+  precio: number;
+  imagen: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  private $error = new Subject<string>();
-  private $busqueda = new Subject<string>();
+  url = '/api';
+  constructor(
+    private http: HttpClient
+    ){}
 
-  constructor(private http: HttpClient) { }
+    //get productos
+    getProductos(){
+      return this.http.get(this.url);
+    }
 
-  setError(mensaje: string) { 
-    this.$error.next(mensaje); 
-  }
+    getProductoById(id: number){
+      return this.http.get(this.url + '/' +id)
+    }
 
-  getError(): Observable<string> { 
-    return this.$error.asObservable();
-  }
+    agregarProducto(producto: Producto){
+      return this.http.post(this.url, producto)
+    }
 
-  busqueda(busqueda: string) {
-    this.$busqueda.next(busqueda);
-  }
+    eliminarProducto(id: number){
+      return this.http.delete(this.url + '/' + id)
+    }
 
-  getBusqueda(): Observable<string> { 
-    return  this.$busqueda.asObservable(); 
-  }
-
-  getProducto(busqueda: string): Observable<any> {
-    return this.http.get(busqueda);
-  }
+    modificarProducto(id: number, producto: Producto){
+      return this.http.put(this.url + '/' + id, producto)
+    }
 }
