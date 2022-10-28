@@ -11,26 +11,31 @@ import { ProductoComponent } from './producto/producto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartService } from './servicio/CartService';
 import { CommonModule } from '@angular/common';
+import { scheduled } from 'rxjs';
+import { Carrito } from './carrito/carrito.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Footer,
     ProductoComponent,
-    
+    Carrito
 
   ],
+
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
-    CommonModule
+    
   ],
   providers: [CartService],
-  bootstrap: [AppComponent,Footer]
+  bootstrap: [AppComponent,Footer],
+
 })
 export class AppModule { }

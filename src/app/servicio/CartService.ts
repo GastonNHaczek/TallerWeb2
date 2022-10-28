@@ -1,22 +1,26 @@
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Producto } from "./producto.service";
 import { Subject } from 'rxjs';
 
 export class CartService{
-    private productosEnCarrito$ = new Subject<Producto[]>();
-    productosEnCarrito: Producto[]=[];
+    private cart = new BehaviorSubject<Array<Producto>>(new Array()); 
+    public productosEnCarrito$ = this.cart.asObservable();
+   
     constructor(){
     }
 
     agregarCarrito(producto:Producto){
-        this.productosEnCarrito.push(producto);
-        this.productosEnCarrito$.next(this.productosEnCarrito);
-        console.log(this.productosEnCarrito);
+        let productosEnCarrito=this.cart.getValue();
+        productosEnCarrito.push(producto);
+       // this.productosEnCarrito$.next(this.productosEnCarrito);
+        //console.log(this.productosEnCarrito);
+        this.cart.next(productosEnCarrito);
     }
+    /*
     getProductosEnCarrito(): Observable<Producto[]>{
         return this.productosEnCarrito$.asObservable();
     }
-    
+    */
 
   
 

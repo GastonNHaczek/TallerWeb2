@@ -13,39 +13,30 @@ import { CommonModule } from '@angular/common';
 })
 
 export class Carrito implements OnInit{
- 
-  public productosEnCarrito: Producto[] = [];
+  productosEnCarrito: Producto[]=[];
+  productosEnCarrito$!: Observable<Producto[]>;
   constructor(
-      private cartService: CartService,
+    private cartService: CartService,
     ){
     }
     ngOnInit(): void {
       this.listarCarrito();
-      
+      //this.productosEnCarrito$=this.cartService.getProductosEnCarrito();
+     // console.log(this.productosEnCarrito$);
     }
     listarCarrito(){
       /*
       this.productosEnCarrito$=this.cartService.getProductosEnCarrito();
       this.productosEnCarrito$.subscribe();
       console.log(JSON.stringify(this.productosEnCarrito));*/
-      this.cartService.getProductosEnCarrito().subscribe(
-        res=> {
-          this.productosEnCarrito = <any>res;
-          console.log(res);
-        }
-      );
+      this.cartService.productosEnCarrito$.subscribe(
+        productos=> {
+          if(productos){
+            this.productosEnCarrito= productos;
+            
+          }
+          
+        })
     }
-   
-/*
-public items: Array<CartItem> = [];
-    this.cartService.currentDataCart$.subscribe(x=>{
-      if(x)
-      {
-        this.items = x;
-        this.totalQuantity = x.length;
-        this.totalPrice = x.reduce((sum, current) => sum + (current.product.price * current.quantity), 0);
-      
-      }
-    })
-*/
 }
+
