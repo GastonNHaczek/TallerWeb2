@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto, ProductoService } from '../servicio/producto.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {CartService} from '../servicio/CartService'
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -9,12 +12,17 @@ export class ProductoComponent implements OnInit {
 
   ListaProductos: Producto[] = [];
   search!: String;
+
   constructor(
+    private cartService:CartService,
     private _productoService: ProductoService
-  ){}
+  ){
+
+  }
 
   ngOnInit(): void {
     this.listarProductos();
+   
   }
 
   listarProductos() {
@@ -25,4 +33,11 @@ export class ProductoComponent implements OnInit {
       }
     );
   }
+  agregarCarrito(producto:Producto){
+    this.cartService.agregarCarrito(producto);
+    
+  }
+  
+
+  
 }

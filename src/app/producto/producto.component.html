@@ -1,16 +1,28 @@
 <h1>Nuestos productos</h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3" *ngFor="let p of ListaProductos">
-    <div class="col">
-        <div class="card h-100">
-            <img src="{{p.imagen}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{p.nombre}}</h5>
-                <p class="card-text">{{p.descripcion}}</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+    <div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3" *ngFor="let producto of ListaProductos">
+        <div class="col">
+            <div class="card h-100">
+                
+                    <img src="{{producto.imagen}}" class="card-img-top" alt="..." >
+                    <div class="card-body d-flex">
+                        <div class="p-2 w-100">
+                            <h3 class="card-title" >{{producto.nombre}}</h3>
+                            <p class="card-text" >{{producto.descripcion}}</p>
+                        </div> 
+                        <div class="p-2 align-self-start">
+                            <p class="btn btn-primary" >${{producto.precio}}</p>
+                        </div>
+            
+                        <div class="p-2 flex-shrink-1">
+                            <a class="filled-button btn-success" (click)='agregarCarrito(producto);'>Comprar</a>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                    
+              
             </div>
         </div>
     </div>
-</div>
