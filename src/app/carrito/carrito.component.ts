@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { CartService } from '../servicio/CartService';
 import { Producto, ProductoService } from '../servicio/producto.service';
 import { CommonModule } from '@angular/common';
+import { CarritoItem } from '../servicio/CarritoItem';
        
 
 
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class Carrito implements OnInit{
-  productosEnCarrito: Producto[]=[];
+  productosEnCarrito: CarritoItem[]=[];
   productosEnCarrito$!: Observable<Producto[]>;
   constructor(
     private cartService: CartService,
@@ -33,10 +34,10 @@ export class Carrito implements OnInit{
         productos=> {
           if(productos){
             this.productosEnCarrito= productos;
-            
           }
           
         })
     }
+    borrarProductoDeCarrito(producto:CarritoItem){}
 }
 
