@@ -38,6 +38,9 @@ export class Carrito implements OnInit{
           
         })
     }
-    borrarProductoDeCarrito(producto:CarritoItem){}
+    borrarProductoDelCarrito(producto:CarritoItem){
+      this.cartService.borrarProductoDelCarrito(producto);
+      
+    }
 }
 

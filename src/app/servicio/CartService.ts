@@ -32,5 +32,20 @@ export class CartService{
         this.cart.next(productosEnCarrito);
         localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
     }
+    borrarProductoDelCarrito(producto:CarritoItem){
+        let productosEnCarrito=this.cart.getValue();
+        let productoIndex=productosEnCarrito.findIndex((index)=> index.producto.id==producto.producto.id);
+        if(productoIndex!=-1){
+            if(productosEnCarrito[productoIndex].cantidad!=1){
+                productosEnCarrito[productoIndex].cantidad-=1;
+            }else{
+                productosEnCarrito.splice(productoIndex,1);
+            }
+        }else {
+            productosEnCarrito.splice(productoIndex,1);
+        }
+        this.cart.next(productosEnCarrito);
+        localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
+    }
    
 }
