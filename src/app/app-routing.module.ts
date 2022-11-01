@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { Carrito } from './carrito/carrito.component';
 import { Cuenta } from './cuenta/cuenta.component';
 import { Home } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { ProductoComponent } from './producto/producto.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 
 const routes: Routes = [
@@ -11,7 +13,9 @@ const routes: Routes = [
   {path: 'home', component: Home},
   {path: 'productos', component: ProductoComponent },
   {path: 'cuenta', component: Cuenta},
-  {path: 'carrito', component: Carrito}
+  {path: 'carrito', component: Carrito},
+  {path: 'login', component: LoginComponent},
+  {path: 'registrar', component: RegistrarComponent}
 
 ];
 @NgModule({

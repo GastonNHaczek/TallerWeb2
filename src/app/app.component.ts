@@ -32,4 +32,11 @@ export class AppComponent {
     this.router.navigate(['/cuenta']);
   }
 
+  irLogin(){
+    console.log('ejecutando redirect');
+ 
+    this.router.navigate(['/login']);
+  }
+
+  
 }

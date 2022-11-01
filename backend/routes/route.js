@@ -88,9 +88,9 @@ const pool_region = 'us-east-2';
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-const app = express();
+//const app = express();
 
-app.use(express.json());
+//app.use(express.json());
 
 router.post('/login', (req, res) => {
     console.log("JSON:" + JSON.stringify(req.body));
