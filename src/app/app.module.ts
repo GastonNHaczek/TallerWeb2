@@ -13,13 +13,17 @@ import { CartService } from './servicio/CartService';
 import { CommonModule } from '@angular/common';
 import { scheduled } from 'rxjs';
 import { Carrito } from './carrito/carrito.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Footer,
     ProductoComponent,
-    Carrito
+    Carrito,
+    LoginComponent,
+    RegistrarComponent
 
   ],
 

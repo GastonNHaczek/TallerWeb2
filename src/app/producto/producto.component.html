@@ -1,7 +1,9 @@
-<h1>Nuestos productos</h1>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3" *ngFor="let producto of ListaProductos">
-        <div class="col">
+<div class="d-flex flex-column justify-content-center bg-white m-4 rounded-3" >
+    <div class="d-flex justify-content-center">
+        <h1>Nuestros Productos</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3" >
+        <div class="col" *ngFor="let producto of ListaProductos">
             <div class="card h-100">
                 
                     <img src="{{producto.imagen}}" class="card-img-top" alt="..." >
@@ -26,3 +28,4 @@
             </div>
         </div>
     </div>
+</div>
