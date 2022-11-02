@@ -1,1 +1,14 @@
-<p>registrar works!</p>
+<div class="login">
+    <form (ngSubmit)="registrar()" class="row g-2">
+    <div class="form">
+      <h2>Registrate</h2>
+      <input type="text" placeholder="Nombre" required>
+      <input type="password" placeholder="Apellido">
+      <input type="password" placeholder="Direccion">
+      <input type="password" placeholder="Email">
+      <input type="password" placeholder="Contraseña">
+      <input type="submit" value="Registrarme" class="submit">          
+    </div>
+</form>
+</div>
+<router-outlet></router-outlet>

@@ -11,5 +11,7 @@ export class RegistrarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+registrar(){
+  
+}
 }
