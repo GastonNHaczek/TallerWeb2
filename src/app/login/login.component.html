@@ -1,10 +1,10 @@
 <div class="login">
-  <form (ngSubmit)="loguearse()" class="row g-2">
+  <form class="row g-2">
     <div class="form">
       <h2>Bienvenid@</h2>
-      <input type="text" placeholder="Usuario">
-      <input type="password" placeholder="Contraseña">
-      <input type="submit" value="Ingresar" class="submit"> 
+      <input type="email" name="email" [(ngModel)]="email" required placeholder="Email">
+      <input type="password" name="password" [(ngModel)]="password" required placeholder="Contraseña">
+      <input type="submit" value="Ingresar" class="submit" (click)='loginWithCognito()'> 
       <input type="button" value="Registrarse" class="submit" (click)='irRegistrar()'>
       <span class="reset"><a href="#">Olvidé mi Contraseña</a></span>      
     </div>

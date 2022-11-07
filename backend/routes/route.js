@@ -1,5 +1,12 @@
 const router = require('express').Router();
 const conexion = require('../database');
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+
+Amplify.configure(awsconfig);
+// >>New - Configuring Auth Module
+Auth.configure(awsconfig);
 
 //login
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -80,17 +87,28 @@ router.put('/:id', (req, res) => {
 });
 
 //login
-const poolData = {    
-    UserPoolId : "us-east-2_NXGNelek7", // Your user pool id here    
-    ClientId : "3rcqik3ot5p7eeal5f7gdi38ba" // Your client id here
+Amplify.configure({
+    Auth:{
+      mandatorySignIn:true,
+      region:'us-east-2',
+      userPoolId:'us-east-2_kVblsSi2m',
+      userPoolWebClienteId:'3v21da7m6f2cvjiit7eub77l0l',
+      authenticationFlowType:'USER_PASSWORD_AUTH'
+    }
+  })
+
+  //login con postman
+/*const poolData = {    
+    UserPoolId : "us-east-2_kVblsSi2m", // Your user pool id here    
+    ClientId : "3v21da7m6f2cvjiit7eub77l0l" // Your client id here
     }; 
 const pool_region = 'us-east-2';
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-//const app = express();
+const app = express();
 
-//app.use(express.json());
+app.use(express.json());
 
 router.post('/login', (req, res) => {
     console.log("JSON:" + JSON.stringify(req.body));
@@ -111,6 +129,6 @@ router.post('/login', (req, res) => {
         })
     });
    
-});
+});*/
 
 module.exports = router

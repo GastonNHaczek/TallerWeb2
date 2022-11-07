@@ -16,6 +16,7 @@ import { Carrito } from './carrito/carrito.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
