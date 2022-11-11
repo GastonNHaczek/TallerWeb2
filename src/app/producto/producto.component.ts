@@ -16,16 +16,12 @@ export class ProductoComponent implements OnInit {
   constructor(
     private cartService:CartService,
     private _productoService: ProductoService
-  ){
-
-  }
+  ){}
 
   ngOnInit(): void {
     this.listarProductos();
-   
   }
-
-  listarProductos() {
+  listarProductos(): void {
     this._productoService.getProductos().subscribe(
       res=> {
         console.log(res);
@@ -33,11 +29,8 @@ export class ProductoComponent implements OnInit {
       }
     );
   }
-  agregarCarrito(producto:Producto){
-    this.cartService.agregarCarrito(producto);
-    
-  }
-  
 
-  
+  agregarCarrito(producto:Producto): void {
+    this.cartService.agregarCarrito(producto);
+  }
 }

@@ -18,17 +18,16 @@ export class CartService{
             console.log(productoIndex);
             if (productoIndex != -1) 
             productosEnCarrito[productoIndex].cantidad += 1;
-          else {
+        else {
             var newItem: CarritoItem = { producto:producto, cantidad: 1 };
             productosEnCarrito.push(newItem);
             console.log(JSON.stringify(productosEnCarrito));
-          }
+        }
         }else{
             productosEnCarrito = [];
             var newItem: CarritoItem = { producto: producto, cantidad: 1 };
             productosEnCarrito.push(newItem);
         }
-     
         this.cart.next(productosEnCarrito);
         localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
     }
@@ -47,5 +46,4 @@ export class CartService{
         this.cart.next(productosEnCarrito);
         localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
     }
-   
 }
