@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const conexion = require('../database');
 /*import Amplify, { Auth } from 'aws-amplify';*/
-import awsconfig from './aws-exports';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import Amplify, { Auth } from 'aws-amplify';
-Amplify.configure(aws_exports);
-import { withAuthenticator } from 'aws-amplify-angular';
+/*import {awsconfig} from './aws-exports';*/
+//import { NgModule } from '@angular/core';
+//import { RouterModule, Routes } from '@angular/router';
+/*import Amplify, { Auth } from 'aws-amplify';*/
+/*Amplify.configure(aws_exports);
+import { withAuthenticator } from 'aws-amplify-angular';*/
 
 
-Amplify.configure(awsconfig);
+//Amplify.configure(awsconfig);
 // >>New - Configuring Auth Module
-Auth.configure(awsconfig);
+//Auth.configure(awsconfig);
 
 //login
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -92,7 +92,7 @@ router.put('/:id', (req, res) => {
 });
 
 //login y registrar
-Amplify.configure({
+/*Amplify.configure({
     Auth:{
       mandatorySignIn:true,
       region:'us-east-2',
@@ -100,7 +100,7 @@ Amplify.configure({
       userPoolWebClienteId:'3v21da7m6f2cvjiit7eub77l0l',
       authenticationFlowType:'USER_PASSWORD_AUTH'
     }
-  })
+  })*/
 
   //login con postman
 const poolData = {    
@@ -111,15 +111,20 @@ const pool_region = 'us-east-2';
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-const app = express();
+//const app = express();
 
-app.use(express.json());
+//app.use(express.json());
 
-router.post('/login', (req, res) => {
+router.post('/api/login', (req, res) => {
     console.log("JSON:" + JSON.stringify(req.body));
- 
+    const{username,password,email}= req.body;
+
     var attributeList = [];
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
+   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"nombre",Value:req.body.Name}));
+   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"direccion",Value:req.body.addr}));
+   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"apellido",Value:"+5412614324321"}));
+    
 
     userPool.signUp(req.body.username, req.body.password, attributeList, null, function(err, result){
         if (err) {

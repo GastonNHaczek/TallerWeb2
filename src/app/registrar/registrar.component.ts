@@ -53,5 +53,11 @@ signUp(){
     apellido:this.apellido,
     direccion:this.direccion}
   this.login.signUp(usuario);
+
+  console.log({usuario});
+      alert('User signup completed, please check verify your email');
+  this.router.navigate(['login']);
+
 }
+
 }

@@ -15,7 +15,8 @@ import { scheduled } from 'rxjs';
 import { Carrito } from './carrito/carrito.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
-
+import { LoginService } from './servicio/LoginService';
+/*import { LoginService } from './servicio/LoginService';*/
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { RegistrarComponent } from './registrar/registrar.component';
     MatTableModule,
     
   ],
-  providers: [CartService],
+  providers: [CartService,],
   bootstrap: [AppComponent,Footer],
 
 })
