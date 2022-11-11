@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, inject, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {Auth} from 'aws-amplify';
 import {FormsModule} from '@angular/forms';
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   email: string='';
   password: string = '';
 
-  constructor(protected router:Router){};
+  constructor(private router:Router){};
 
   ngOnInit(): void {
   }

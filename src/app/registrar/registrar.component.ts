@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import Amplify,{Auth} from 'aws-amplify';
+import { Component, OnInit, Input, inject, Inject } from '@angular/core';
+import {Auth} from 'aws-amplify';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService, Usuario } from '../servicio/LoginService';
 /*import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';*/
 
 
@@ -16,16 +17,16 @@ export class RegistrarComponent implements OnInit {
   nombre:string;
   apellido:string;
   direccion:string;
-  constructor(private router:Router
+  constructor(private router:Router, private login:LoginService,
     ) {
     
    }
 
   ngOnInit(): void {
   }
-registrar(){
-  try{
-    const user = Auth.signUp({
+ /* async signUp(){
+    try {
+        const user  =  Auth.signUp({
       username:this.email,
       password:this.password,
       attributes:{
@@ -42,5 +43,15 @@ registrar(){
     console.log('error registro:', error);
   }
   
+}*/
+signUp(){
+  let usuario:Usuario;
+  usuario={username:this.email,
+    password:this.password,
+    email:this.email,
+    nombre:this.nombre,
+    apellido:this.apellido,
+    direccion:this.direccion}
+  this.login.signUp(usuario);
 }
 }

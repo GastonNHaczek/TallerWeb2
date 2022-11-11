@@ -1,7 +1,12 @@
 const router = require('express').Router();
 const conexion = require('../database');
-import Amplify, { Auth } from 'aws-amplify';
+/*import Amplify, { Auth } from 'aws-amplify';*/
 import awsconfig from './aws-exports';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import Amplify, { Auth } from 'aws-amplify';
+Amplify.configure(aws_exports);
+import { withAuthenticator } from 'aws-amplify-angular';
 
 
 Amplify.configure(awsconfig);
@@ -86,7 +91,7 @@ router.put('/:id', (req, res) => {
     })
 });
 
-//login
+//login y registrar
 Amplify.configure({
     Auth:{
       mandatorySignIn:true,
@@ -98,7 +103,7 @@ Amplify.configure({
   })
 
   //login con postman
-/*const poolData = {    
+const poolData = {    
     UserPoolId : "us-east-2_kVblsSi2m", // Your user pool id here    
     ClientId : "3v21da7m6f2cvjiit7eub77l0l" // Your client id here
     }; 
@@ -129,6 +134,6 @@ router.post('/login', (req, res) => {
         })
     });
    
-});*/
+});
 
 module.exports = router

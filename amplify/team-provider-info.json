@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "taller2386b53e0": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2g2pw2kann5jd",
+          "type": "manual"
+        }
       }
     }
   }

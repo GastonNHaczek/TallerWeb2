@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@aws-amplify/ui": "^4.1.0",
     "aws-amplify": "^4.3.42",
     "mysql": "^2.18.1",
     "rxjs": "~7.5.0",
