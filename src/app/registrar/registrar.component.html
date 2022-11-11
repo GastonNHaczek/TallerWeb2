@@ -1,13 +1,13 @@
 <div class="login">
-    <form (ngSubmit)="registrar()" class="row g-2">
+    <form class="row g-2">
     <div class="form">
       <h2>Registrate</h2>
-      <input type="text" placeholder="Nombre" required>
-      <input type="password" placeholder="Apellido">
-      <input type="password" placeholder="Direccion">
-      <input type="password" placeholder="Email">
-      <input type="password" placeholder="Contraseña">
-      <input type="submit" value="Registrarme" class="submit">          
+      <input type="text" name="nombre" [(ngModel)]="nombre" required placeholder="Nombre">
+      <input type="text" name="apellido" [(ngModel)]="apellido" required placeholder="Apellido"> 
+      <input type="text" name="direccion" [(ngModel)]="direccion" required placeholder="Direccion">
+      <input type="email" name="email" [(ngModel)]="email" required placeholder="Email">
+      <input type="password" name="password" [(ngModel)]="password" required placeholder="Contraseña">
+      <input (click)="signUp()" type="submit" value="Registrarme">          
     </div>
 </form>
 </div>
