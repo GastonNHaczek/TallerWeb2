@@ -115,9 +115,9 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 //app.use(express.json());
 
-router.post('/api/login', (req, res) => {
+router.post('/login', (req, res) => {
     console.log("JSON:" + JSON.stringify(req.body));
-    const{username,password,email}= req.body;
+    //const{username,password,email}= req.body;
 
     var attributeList = [];
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
