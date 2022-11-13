@@ -1,5 +1,17 @@
 const router = require('express').Router();
 const conexion = require('../database');
+
+const indiceDeProducto = (carrito, idProducto) => {
+    return carrito.findIndex(productoDentroDelCarrito => productoDentroDelCarrito.id === idProducto);
+  }
+  const existeProducto = (carrito, producto) => {
+    return indiceDeProducto(carrito, producto.id) !== -1;
+  }
+  router.use(session({
+    secret: process.env.SESSION_KEY,
+    saveUninitialized: true,
+    resave: true,
+  }))
 /*import Amplify, { Auth } from 'aws-amplify';*/
 /*import {awsconfig} from './aws-exports';*/
 //import { NgModule } from '@angular/core';
@@ -91,17 +103,6 @@ router.put('/:id', (req, res) => {
     })
 });
 
-//login y registrar
-/*Amplify.configure({
-    Auth:{
-      mandatorySignIn:true,
-      region:'us-east-2',
-      userPoolId:'us-east-2_kVblsSi2m',
-      userPoolWebClienteId:'3v21da7m6f2cvjiit7eub77l0l',
-      authenticationFlowType:'USER_PASSWORD_AUTH'
-    }
-  })*/
-
   //login con postman
 const poolData = {    
     UserPoolId : "us-east-2_kVblsSi2m", // Your user pool id here    
@@ -117,7 +118,6 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 router.post('/registrar', (req, res) => {
     console.log("JSON:" + JSON.stringify(req.body));
-    //const{username,password,email}= req.body;
 
     var attributeList = [];
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
@@ -140,6 +140,7 @@ router.post('/registrar', (req, res) => {
     });
    
 });
+
 router.post('/login',(req,res)=>{
     console.log("JSON:"+JSON.stringify(req.body));
     var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
@@ -167,5 +168,19 @@ router.post('/login',(req,res)=>{
     });
 
 })
+
+router.post("/carrito/agregar", async (req, res) => {
+    const idProducto = req.body.id;
+    const producto = await productoModel.obtenerPorId(idProducto);
+    if (!req.session.carrito) {
+      req.session.carrito = [];
+    }
+    if (existeProducto(req.session.carrito, producto)) {
+        res.json(true);
+        return;
+      }
+      req.session.carrito.push(producto);
+      res.json(req.body);
+    });
 
 module.exports = router
