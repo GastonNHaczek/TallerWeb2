@@ -1,10 +1,16 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div class="bg-dark ">
+<div class="bg-dark " >
   <nav class="d-flex flex-column flex-md-row justify-content-center ">
       <button type="button" class="btn btn-dark btn-lg" (click)='irHome()'>Home</button>
       <button type="button" class="btn btn-dark btn-lg" (click)='irProductos()'>Productos</button>
-      <button type="button" class="btn btn-dark btn-lg" (click)='irCuenta()'>Cuenta</button>
-      <button type="button" class="btn btn-dark btn-lg" (click)='irCarrito()'>Carrito</button>
-  </nav>
-</div>
+      <button type="button" class="btn btn-dark btn-lg" (click)='irCuenta()'>Cuenta</button> 
+      <!-- <button type="button" class="btn btn-dark btn-lg" (click)='irCarrito()'>Carrito</button>   -->
+    </nav>
+    <div class="buscadorCarro"> 
+      <img type="button" class="carroMenuImg" (click)='irCarrito()' src="../assets/shopping-cart.svg">
+      <div class="circuloCantidadProductos">
+        <h1>0</h1>
+      </div>
+    </div>
+  </div>
 <router-outlet></router-outlet>
