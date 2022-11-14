@@ -1,30 +1,40 @@
-<div class="d-flex flex-column justify-content-center bg-white m-4 rounded-3">
-    <div class="d-flex justify-content-center">
+<div class="flex-column justify-content-center bg-white m-4 rounded-3 m-5 ">
+    <div class="d-flex justify-content-center border-bottom pt-3 m-3">
         <h1>Productos en Carrito </h1>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 rounded-5 m-3">
+    <div class="col col-cols-1 col-cols-md-3 g-4 rounded-5 m-3">
         <div class="col" *ngFor="let producto of productosEnCarrito">
-            <div class="card h-100">
-                <img src="{{producto.producto.imagen}}" class="card-img-top" alt="...">
-                <div class="card-body d-flex">
-                    <div class="p-2 w-100">
-                        <h3 class="card-title">{{producto.producto.nombre}}</h3>
-                        <p class="card-text">{{producto.producto.descripcion}}</p>
-                        <p class="card-text">Cantidad : {{producto.cantidad}}</p>
+            <div class="flex-column d-flex mt-4 pt-2 pb-2 border-bottom ">
+                <div class=" d-flex ">
+
+             
+                    <img src="{{producto.producto.imagen}}" width="23%" class="me-4 rounded-3" alt="...">
+                    <div class="card-body d-flex">
+                        <div class="p-2 w-100">
+                            <h2 class="card-title">{{producto.producto.nombre}}</h2>
+                            <p class="card-text">{{producto.producto.descripcion}}</p>
+                            <p class="card-text">Cantidad : {{producto.cantidad}}</p>
+                        </div>
+                        <div class="p-2 align-self-start">
+                            <p class="btn btn-primary">${{producto.producto.precio}}</p>
+                        </div>
+                        <div class="p-2 flex-shrink-1">
+                            <button type="submit" class="btn btn-danger"
+                                (click)='borrarProductoDelCarrito(producto)'>Borrar</button>
+                        </div>
                     </div>
-                    <div class="p-2 align-self-start">
-                        <p class="btn btn-primary">${{producto.producto.precio}}</p>
-                    </div>
-                    <div class="p-2 flex-shrink-1">
-                        <button type="submit" class="btn btn-danger"
-                            (click)='borrarProductoDelCarrito(producto)'>Borrar</button>
-                    </div>
-                </div>
+             </div>
             </div>
         </div>
-        <div class="d-flex justify-content-between w-100 mt-3">
-            <h3>Total: ${{ precioTotal }}</h3>
-            <a class="btn btn-danger" (click)='pagar()'>Realizar pago</a>
+        <div class="d-flex justify-content-evenly align-items-center align-self-center w-100 mt-3 p-3">
+                <div class="p-2 align-self-start">
+                    <h3>Total: ${{ precioTotal }}</h3>
+                </div>
+            
+                <div class="flex-shrink-1">
+                    <a class="btn btn-success " (click)='pagar()'>Realizar pago</a>
+                </div>
+           
         </div>
     </div>
 </div>
