@@ -35,7 +35,8 @@ export class AppComponent implements OnInit{
       productos=> {
         if(productos){
           this.productosEnCarrito= productos;
-          this.cantidadTotal = productos.length;
+          //this.cantidadTotal = productos.length;
+          this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
         }
         
       })

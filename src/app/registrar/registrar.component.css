@@ -4,7 +4,7 @@
   }
   .login {
     width: 320px;
-    height: 550px;
+    height: auto;
     border: 1px solid #CCC;
     background: url(https://media2.giphy.com/media/7AtHoQ9XWbpwLRxs0t/giphy.gif?cid=ecf05e47dz1p0hxd2hwzp4iv74dlwtltkh2a91jwxmka4hbo&rid=giphy.gif&ct=g) center center no-repeat;
     background-size: cover;
@@ -73,6 +73,7 @@
     background: #f8d7da;
     border-color: #f5c6cb;
     margin-bottom: 5px;
+    margin-top: 5px;
   }
 
   .container-error-message {
