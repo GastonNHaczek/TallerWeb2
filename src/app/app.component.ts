@@ -1,17 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarritoItem } from './servicio/CarritoItem';
+import { CartService } from './servicio/CartService';
+import { Producto } from './servicio/producto.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   title = 'TP-TALLERWEB2';
 
-  constructor(protected router:Router){};
+  constructor(protected router:Router,
+    private cartService: CartService,
+    ){}
+
+    
+  productosEnCarrito: CarritoItem[]=[];
+  cantidadTotal: number = 0;
+  productosEnCarrito$!: Observable<Producto[]>;
+
+
+  ngOnInit(): void {
+    this.listarCarrito();
+    throw new Error('Method not implemented.');
+  }
+ 
+
+  listarCarrito(){
+    this.cartService.productosEnCarrito$.subscribe(
+      productos=> {
+        if(productos){
+          this.productosEnCarrito= productos;
+          this.cantidadTotal = productos.length;
+        }
+        
+      })
+  }
+
   irHome(){
     console.log('ejecutando redirect');
  

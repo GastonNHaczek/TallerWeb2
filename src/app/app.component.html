@@ -4,12 +4,11 @@
       <button type="button" class="btn btn-dark btn-lg" (click)='irHome()'>Home</button>
       <button type="button" class="btn btn-dark btn-lg" (click)='irProductos()'>Productos</button>
       <button type="button" class="btn btn-dark btn-lg" (click)='irCuenta()'>Cuenta</button> 
-      <!-- <button type="button" class="btn btn-dark btn-lg" (click)='irCarrito()'>Carrito</button>   -->
     </nav>
     <div class="buscadorCarro"> 
       <img type="button" class="carroMenuImg" (click)='irCarrito()' src="../assets/shopping-cart.svg">
-      <div class="circuloCantidadProductos">
-        <h1>0</h1>
+      <div class="circuloCantidadProductos" *ngFor="let producto of productosEnCarrito">
+        <h1>{{cantidadTotal}}</h1>
       </div>
     </div>
   </div>
