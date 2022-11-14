@@ -66,12 +66,10 @@ nav{
 }
 /*Contador Carrito*/
 .circuloCantidadProductos{
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   background: red;
-  /* float: right; */
   border-radius: 100%;
-  /*margin-right: 10px; */
   margin-top: 20px;
   margin-left: 27px;
   position: absolute;
@@ -80,5 +78,5 @@ nav{
   text-align: center;
   color: white;
   font-family: arial;
-  font-size: 18pt;
+  font-size: 14pt;
 }
