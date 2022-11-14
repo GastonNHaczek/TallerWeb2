@@ -14,7 +14,7 @@ export class CartService {
     public productosEnCarrito$ = this.cart.asObservable();
     public alerta = '';
 
-    agregarCarrito(producto:Producto){
+    agregarCarrito(producto:Producto) {
         let productosEnCarrito=this.cart.getValue();
         if(productosEnCarrito.length!=0){
             let productoIndex= productosEnCarrito.findIndex((index) =>index.producto.id==producto.id)
@@ -35,7 +35,8 @@ export class CartService {
         localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
         swal.fire('Producto agregado correctamente' ,this.alerta, 'success');
     }
-    borrarProductoDelCarrito(producto:CarritoItem){
+
+    borrarProductoDelCarrito(producto:CarritoItem) {
         let productosEnCarrito=this.cart.getValue();
         let productoIndex=productosEnCarrito.findIndex((index)=> index.producto.id==producto.producto.id);
         if(productoIndex!=-1){

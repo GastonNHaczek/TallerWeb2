@@ -14,11 +14,11 @@ export class AppComponent implements OnInit{
 
   title = 'TP-TALLERWEB2';
 
-  constructor(protected router:Router,
+  constructor(
+    protected router:Router,
     private cartService: CartService,
-    ){}
+  ){}
 
-    
   productosEnCarrito: CarritoItem[]=[];
   cantidadTotal: number = 0;
   productosEnCarrito$!: Observable<Producto[]>;
@@ -26,16 +26,13 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.listarCarrito();
-    throw new Error('Method not implemented.');
   }
- 
 
   listarCarrito(){
     this.cartService.productosEnCarrito$.subscribe(
       productos=> {
         if(productos){
           this.productosEnCarrito= productos;
-          //this.cantidadTotal = productos.length;
           this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
         }
         
@@ -44,30 +41,26 @@ export class AppComponent implements OnInit{
 
   irHome(){
     console.log('ejecutando redirect');
- 
     this.router.navigate(['/home']);
   }
+
   irProductos(){
     console.log('ejecutando redirect');
- 
     this.router.navigate(['/productos']);
   }
+
   irCarrito(){
     console.log('ejecutando redirect');
- 
     this.router.navigate(['/carrito']);
   }
+
   irCuenta(){
     console.log('ejecutando redirect');
- 
     this.router.navigate(['/cuenta']);
   }
-
+  
   irLogin(){
     console.log('ejecutando redirect');
- 
     this.router.navigate(['/login']);
   }
-
-  
 }

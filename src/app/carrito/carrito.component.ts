@@ -15,7 +15,7 @@ export class Carrito implements OnInit{
   
   constructor(
     private cartService: CartService,
-    ){}
+  ){}
 
   productosEnCarrito: CarritoItem[]=[];
   precioTotal: number = 0;
@@ -25,14 +25,9 @@ export class Carrito implements OnInit{
 
   ngOnInit(): void {
     this.listarCarrito();
-    //this.productosEnCarrito$=this.cartService.getProductosEnCarrito();
-    // console.log(this.productosEnCarrito$);
   }
+
   listarCarrito(){
-    /*
-    this.productosEnCarrito$=this.cartService.getProductosEnCarrito();
-    this.productosEnCarrito$.subscribe();
-    console.log(JSON.stringify(this.productosEnCarrito));*/
     this.cartService.productosEnCarrito$.subscribe(
       productos=> {
         if(productos){
@@ -40,9 +35,9 @@ export class Carrito implements OnInit{
           this.productosEnCarrito= productos;
           this.cantidadTotal = productos.length;
         }
-        
       })
   }
+
   borrarProductoDelCarrito(producto:CarritoItem){
     this.cartService.borrarProductoDelCarrito(producto);
     

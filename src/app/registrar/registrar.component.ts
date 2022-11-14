@@ -64,12 +64,9 @@ export class RegistrarComponent implements OnInit {
         nombre:this.nombre,
         apellido:this.apellido,
         direccion:this.direccion
-      }
-      
+      };
       this.login.signUp(usuario).subscribe(); 
-
       swal.fire('Se registro correctamenta, por favor verifica tu email' , this.alerta, 'success');
       this.router.navigate(['login']);
   }
-
 }

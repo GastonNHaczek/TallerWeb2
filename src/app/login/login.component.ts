@@ -9,22 +9,30 @@ import { LoginService, Usuario, UsuarioLogin } from '../servicio/LoginService';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
+  
+  constructor(
+    private router:Router,
+    private loginService:LoginService
+  ){};
+    
   email: string='';
   password: string = '';
-
-  constructor(private router:Router,private loginService:LoginService){};
 
   ngOnInit(): void {
   }
 
   login(){
     let usuarioLogin:UsuarioLogin;
-    usuarioLogin={username:this.email,
-      password:this.password}
+    usuarioLogin = {
+      username:this.email,
+      password:this.password
+    };
     this.loginService.login(usuarioLogin).subscribe(); 
     this.router.navigate(['home']);
   }
+
   irRegistrar(){
     this.router.navigate(['registrar']);
   }

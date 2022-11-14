@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 export interface Producto {
-  
   id: number;
   nombre: string;
   descripcion: string;
@@ -13,9 +12,11 @@ export interface Producto {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductoService {
 
   url = '/api';
+  
   constructor(
     private http: HttpClient
     ){}
