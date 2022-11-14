@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
       username:this.email,
       password:this.password
     };
+
     this.loginService.login(usuarioLogin).subscribe(); 
-    this.router.navigate(['home']);
+    
   }
 
   irRegistrar(){

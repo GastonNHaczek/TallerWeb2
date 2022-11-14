@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'carrito', component: Carrito},
   {path: 'login', component: LoginComponent},
   {path: 'registrar', component: RegistrarComponent}
+  
 
 ];
 @NgModule({
