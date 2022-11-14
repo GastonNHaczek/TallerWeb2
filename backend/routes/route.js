@@ -41,6 +41,18 @@ router.post('/', (req, res) => {
     })
 });  
 
+router.post('/carrito', (req, res) => { 
+    const{precio, cantidad} = req.body;
+    let sql = `insert into Carrito(Precio, Cantidad) values('${precio}', '${cantidad}')`;
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) 
+            throw err;
+        else {
+            res.json({status: 'Pago exitoso'});
+        }
+    })
+}); 
+
 //Elimiacion de productos
 router.delete('/:id', (req, res) => {
     const{id} = req.params;

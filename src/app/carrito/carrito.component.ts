@@ -44,6 +44,14 @@ export class Carrito implements OnInit{
   }
 
   pagar(): void {
+    this.cartService.productosEnCarrito$.subscribe(
+      productos=> {
+        if(productos){
+          this.precioTotal = productos.reduce((sum, current) => sum + (current.producto.precio * current.cantidad), 0);
+          this.cantidadTotal = this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
+        }
+      })
+      this.cartService.pagar(this.precioTotal, this.cantidadTotal).subscribe(); 
     swal.fire('Pago realizado', this.alerta, 'success');
   }
 }

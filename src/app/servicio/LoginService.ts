@@ -18,7 +18,7 @@ export class LoginService{
         return this.http.post<Usuario>(url, usuario);
     }
     login(usuarioLogin:UsuarioLogin):Observable<any>{
-       let url ='/api/login';
+        let url ='/api/login';
         return this.http.post<UsuarioLogin>(url, usuarioLogin);
     }
 }

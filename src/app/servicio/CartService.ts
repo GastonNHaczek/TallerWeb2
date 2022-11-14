@@ -2,9 +2,15 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { Producto } from "./producto.service";
 import { CarritoItem } from "./CarritoItem";
 import swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+
+@Injectable({providedIn:'root'})
 export class CartService {
 
-    constructor(){
+    constructor(
+        private http: HttpClient
+    ){
         var productosEnCache = localStorage.getItem('cart');
         var carritoItem: CarritoItem[]=productosEnCache ? JSON.parse(productosEnCache) : [];
         this.cart.next(carritoItem);
@@ -51,5 +57,14 @@ export class CartService {
         this.cart.next(productosEnCarrito);
         localStorage.setItem('cart', JSON.stringify(productosEnCarrito));
         swal.fire('Producto eliminado correctamente', this.alerta, 'success');
+    }
+
+    pagar(precio: number, cantidad: number): Observable<any> {
+        let producto = {
+            precio: precio,
+            cantidad: cantidad
+        }
+        let url = '/api/carrito';
+        return this.http.post(url, producto);
     }
 }
