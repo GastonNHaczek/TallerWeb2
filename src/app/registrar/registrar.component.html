@@ -1,14 +1,54 @@
 <div class="login">
-    <form class="row g-2">
+  <form [formGroup]="registerForm" errorTailor  (ngSubmit)="validateForm()" class="row g-2">
     <div class="form">
       <h2>Registrate</h2>
-      <input type="text" name="nombre" [(ngModel)]="nombre" required placeholder="Nombre">
-      <input type="text" name="apellido" [(ngModel)]="apellido" required placeholder="Apellido"> 
-      <input type="text" name="direccion" [(ngModel)]="direccion" required placeholder="Direccion">
-      <input type="email" name="email" [(ngModel)]="email" required placeholder="Email">
-      <input type="password" name="password" [(ngModel)]="password" required placeholder="Contraseña">
-      <input (click)="signUp()" type="submit" value="Registrarme">          
+      <input type="text" name="name" [(ngModel)]="nombre" formControlName="name" placeholder="Nombre">
+      <div class="alert alert-danger" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+        <div class="container-error-message" *ngIf="name?.hasError('required')">
+          El campo nombre es requerido
+        </div>
+        <div class="container-error-message" *ngIf="name?.hasError('minlength')">
+          Nombre debe contener mas de 5 caracteres.
+        </div>
+      </div>
+      <input type="text" name="apellido" [(ngModel)]="apellido" formControlName="surname" placeholder="Apellido"> 
+      <div class="alert alert-danger" *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+        <div class="container-error-message" *ngIf="surname?.hasError('required')">
+          El campo apellido es requerido
+        </div>
+        <div class="container-error-message" *ngIf="surname?.hasError('minlength')">
+          Apellido debe contener mas de 5 caracteres.
+        </div>
+      </div>
+      <input type="text" name="direccion" [(ngModel)]="direccion" formControlName="address" placeholder="Direccion">
+      <div class="alert alert-danger" *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+        <div class="container-error-message" *ngIf="address?.hasError('required')">
+          El campo direccion es requerido
+        </div>
+        <div class="container-error-message" *ngIf="address?.hasError('minlength')">
+          Direccion debe contener mas de 5 caracteres.
+        </div>
+      </div>
+      <input type="email" name="email" [(ngModel)]="email" formControlName="correo" placeholder="Email">
+      <div class="alert alert-danger" *ngIf="correo?.invalid && (correo?.dirty || correo?.touched)">
+        <div class="container-error-message" *ngIf="correo?.hasError('required')">
+          El campo email es requerido
+        </div>
+        <div class="container-error-message" *ngIf="correo?.hasError('email')">
+          El formato del email es incorrecto.
+        </div>
+      </div>
+      <input type="password" name="password" [(ngModel)]="password" formControlName="pass" placeholder="Contraseña">
+      <div class="alert alert-danger" *ngIf="pass?.invalid && (pass?.dirty || pass?.touched)">
+        <div class="container-error-message" *ngIf="pass?.hasError('required')">
+          El campo contraseña es requerido
+        </div>
+        <div class="container-error-message" *ngIf="pass?.hasError('minlength')">
+          La contraseña debe contener mas de 5 caracteres.
+        </div>
+      </div>
+      <input (click)="signUp()" type="submit" value="Registrarme" [disabled]="registerForm.invalid">          
     </div>
-</form>
+  </form>
 </div>
 <router-outlet></router-outlet>

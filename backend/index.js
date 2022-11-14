@@ -1,6 +1,5 @@
 
-const express = require('express'),
-session = require('express-session');
+const express = require('express')
 
 const app = express()
 require('./database')

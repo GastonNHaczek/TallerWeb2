@@ -1,37 +1,8 @@
 const router = require('express').Router();
 const conexion = require('../database');
 
-const indiceDeProducto = (carrito, idProducto) => {
-    return carrito.findIndex(productoDentroDelCarrito => productoDentroDelCarrito.id === idProducto);
-  }
-  const existeProducto = (carrito, producto) => {
-    return indiceDeProducto(carrito, producto.id) !== -1;
-  }
-  router.use(session({
-    secret: process.env.SESSION_KEY,
-    saveUninitialized: true,
-    resave: true,
-  }))
-/*import Amplify, { Auth } from 'aws-amplify';*/
-/*import {awsconfig} from './aws-exports';*/
-//import { NgModule } from '@angular/core';
-//import { RouterModule, Routes } from '@angular/router';
-/*import Amplify, { Auth } from 'aws-amplify';*/
-/*Amplify.configure(aws_exports);
-import { withAuthenticator } from 'aws-amplify-angular';*/
-
-
-//Amplify.configure(awsconfig);
-// >>New - Configuring Auth Module
-//Auth.configure(awsconfig);
-
 //login
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
-const AWS = require('aws-sdk');
-const request = require('request');
-const jwkToPem = require('jwk-to-pem');
-const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 //obtiene todos los productos
@@ -112,33 +83,33 @@ const pool_region = 'us-east-2';
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-//const app = express();
-
-//app.use(express.json());
-
 router.post('/registrar', (req, res) => {
-    console.log("JSON:" + JSON.stringify(req.body));
 
-    var attributeList = [];
-    attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
-   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"nombre",Value:req.body.Name}));
-   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"direccion",Value:req.body.addr}));
-   // attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"apellido",Value:"+5412614324321"}));
-    
+    const { email, nombre, apellido, direccion, password } = req.body;
+    let errors = validateValues(email, nombre, apellido, direccion, password);
 
-    userPool.signUp(req.body.username, req.body.password, attributeList, null, function(err, result){
-        if (err) {
-            console.log(err);
-            res.json(err);
-            return;
-        }
-        cognitoUser = result.user;
-        console.log('user name is ' + cognitoUser.getUsername());
-        res.json({
-            bienvenido: `${cognitoUser.getUsername()}`
-        })
-    });
-   
+    if(errors.length > 0) {
+        res.status(400).json({ message: 'Deben completarse correctamente todos los campos del formulario', errors: errors });
+    }
+    else {
+        console.log("JSON:" + JSON.stringify(req.body));
+
+        var attributeList = [];
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
+
+        userPool.signUp(req.body.username, req.body.password, attributeList, null, function(err, result){
+            if (err) {
+                console.log(err);
+                res.json(err);
+                return;
+            }
+            cognitoUser = result.user;
+            console.log('user name is ' + cognitoUser.getUsername());
+            res.json({
+                bienvenido: `${cognitoUser.getUsername()}`
+            })
+        });
+    }
 });
 
 router.post('/login',(req,res)=>{
@@ -155,32 +126,54 @@ router.post('/login',(req,res)=>{
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-           
+        
             console.log('access token + ' + result.getAccessToken().getJwtToken());
             console.log('id token + ' + result.getIdToken().getJwtToken());
             console.log('refresh token + ' + result.getRefreshToken().getToken());
         },
         onFailure: function(err) {
             console.log(err);
-         
+        
         }
 
     });
 
 })
 
-router.post("/carrito/agregar", async (req, res) => {
-    const idProducto = req.body.id;
-    const producto = await productoModel.obtenerPorId(idProducto);
-    if (!req.session.carrito) {
-      req.session.carrito = [];
+function validateValues(email, password, name, surname, address) {
+    let errors = []
+
+    if (!email) {
+        errors.push('El campo es email requerido')
+    } else if (typeof email != 'string') {
+        errors.push('El email debe contener caracteres')
     }
-    if (existeProducto(req.session.carrito, producto)) {
-        res.json(true);
-        return;
-      }
-      req.session.carrito.push(producto);
-      res.json(req.body);
-    });
+
+    if (!name) {
+        errors.push('El campo nombre es requerido')
+    } else if (typeof name != 'string') {
+        errors.push('El nombre debe contener caracteres')
+    }
+
+    if (!surname) {
+        errors.push('El campo apellido es requerido')
+    } else if (typeof surname != 'string') {
+        errors.push('El apellido debe contener caracteres')
+    }
+
+    if (!address) {
+        errors.push('El campo dirección es requerido')
+    } else if (typeof address != 'string') {
+        errors.push('La dirección debe contener caracteres')
+    }
+
+    if(!password) {
+        errors.push('El campo contraseña es requerido')
+    } else if (typeof password != 'string') {
+        errors.push('La contraseña debe contener caracteres')
+    }
+
+    return errors;
+}
 
 module.exports = router
