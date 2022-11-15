@@ -3,7 +3,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'bariloche10',
-    database: 'angular',
+    database: 'tallerweb2',
     port: 3306
 });
 connection.connect(function(error){

@@ -10,7 +10,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartService } from './servicio/CartService';
 import { CommonModule } from '@angular/common';
-import { scheduled } from 'rxjs';
+import { FilterPipe } from './pipe/filterPipe';
 import { Carrito } from './carrito/carrito.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
@@ -21,7 +21,8 @@ import { RegistrarComponent } from './registrar/registrar.component';
     ProductoComponent,
     Carrito,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    FilterPipe
 
   ],
 

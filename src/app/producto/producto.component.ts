@@ -14,6 +14,7 @@ export class ProductoComponent implements OnInit {
   ){}
     
   ListaProductos: Producto[] = [];
+  filterPost = '';
   search!: String;
 
   ngOnInit(): void {
