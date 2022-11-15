@@ -43,8 +43,8 @@
         <div class="container-error-message" *ngIf="pass?.hasError('required')">
           El campo contraseña es requerido
         </div>
-        <div class="container-error-message" *ngIf="pass?.hasError('minlength')">
-          La contraseña debe contener mas de 5 caracteres.
+        <div class="container-error-message">
+          La contraseña debe contener la primer letra mayuscula y mas de 5 caracteres entre letras y numeros.
         </div>
       </div>
       <input (click)="signUp()" type="submit" value="Registrarme" [disabled]="registerForm.invalid">          

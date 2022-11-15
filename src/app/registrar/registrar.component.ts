@@ -44,7 +44,7 @@ export class RegistrarComponent implements OnInit {
         correo: new FormControl('', [Validators.required, Validators.email]),
         name: new FormControl('', [Validators.required, Validators.minLength(5)]),
         surname: new FormControl('', [Validators.required, Validators.minLength(5)]),
-        pass: new FormControl('', [Validators.required, Validators.minLength(10)]),
+        pass: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern('[A-Z]{1}[a-z0-9]*')]),
         address: new FormControl('', [Validators.required, Validators.minLength(5)])
       });
     }
