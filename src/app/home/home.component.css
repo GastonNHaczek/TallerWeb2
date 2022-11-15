@@ -1,3 +1,7 @@
 body{
     background: aqua;
 }
+
+.card-img-top{
+    height: 47%;
+}
