@@ -6,6 +6,10 @@ nav{
   width: 100%;
 }
 
+nav{
+  background-image: url("../assets/header.jpg");
+}
+
 .bg-dark{
   display: flex;
 }
