@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, inject, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import {Auth} from 'aws-amplify';
-import {FormsModule} from '@angular/forms';
-import { LoginService, Usuario, UsuarioLogin } from '../servicio/LoginService';
+import { LoginService, UsuarioLogin } from '../servicio/LoginService';
 
 @Component({
   selector: 'app-login',
