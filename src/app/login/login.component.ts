@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.loginService.login(usuarioLogin).subscribe(); 
-    
+    this.router.navigate(['home']);
   }
 
   irRegistrar(){

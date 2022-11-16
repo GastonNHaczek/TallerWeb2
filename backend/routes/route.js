@@ -124,8 +124,7 @@ router.post('/registrar', (req, res) => {
     }
 });
 
-router.post('/login',(req,res)=>{
-   
+router.post('/login',(req,res) => {
     console.log("JSON:"+JSON.stringify(req.body));
     var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
         Username : req.body.username,
@@ -136,7 +135,7 @@ router.post('/login',(req,res)=>{
         Username : req.body.username,
         Pool : userPool
     };
-  
+
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
@@ -147,8 +146,6 @@ router.post('/login',(req,res)=>{
         },
         onFailure: function(err) {
             console.log(err);
-          
-           
         }
     });
 
