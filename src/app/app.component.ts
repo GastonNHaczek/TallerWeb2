@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
 
+  mostrar=false;
+
   title = 'TP-TALLERWEB2';
 
   constructor(
@@ -63,4 +65,11 @@ export class AppComponent implements OnInit{
     console.log('ejecutando redirect');
     this.router.navigate(['/login']);
   }
+
+  irCerrar(){
+    this.router.navigate(['/login']);
+  }
+    
+
+
 }
