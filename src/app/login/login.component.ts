@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, inject, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService, UsuarioLogin } from '../servicio/LoginService';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,19 +17,27 @@ export class LoginComponent implements OnInit {
     
   email: string='';
   password: string = '';
+  alerta: string = '';
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  login(){
+  login() {
     let usuarioLogin:UsuarioLogin;
-    usuarioLogin = {
+      usuarioLogin = {
       username:this.email,
       password:this.password
     };
 
-    this.loginService.login(usuarioLogin).subscribe(); 
-    this.router.navigate(['home']);
+    this.loginService.login(usuarioLogin).subscribe(res => {
+      if(res.status == 401) {
+        this.router.navigate(['login']);
+        swal.fire('Email o Contraseña incorrecta', this.alerta, 'error');
+      }
+      else {
+        console.log(res);
+        this.router.navigate(['home']);
+      }
+    }); 
   }
 
   irRegistrar(){

@@ -1,11 +1,9 @@
 
 const express = require('express')
-
 const app = express()
 require('./database')
 
 app.use(express.json())
-
 const port = (process.env.PORT || 3000)
 
 app.set('port', port)

@@ -108,7 +108,6 @@ router.post('/registrar', (req, res) => {
 
         var attributeList = [];
         attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:req.body.email}));
-
         userPool.signUp(req.body.username, req.body.password, attributeList, null, function(err, result){
             if (err) {
                 console.log(err);
@@ -142,10 +141,10 @@ router.post('/login',(req,res) => {
             console.log('access token + ' + result.getAccessToken().getJwtToken());
             console.log('id token + ' + result.getIdToken().getJwtToken());
             console.log('refresh token + ' + result.getRefreshToken().getToken());
-
+            res.send(result);
         },
         onFailure: function(err) {
-            console.log(err);
+            res.send({status: 401});
         }
     });
 
