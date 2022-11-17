@@ -42,27 +42,22 @@ export class AppComponent implements OnInit{
   }
 
   irHome(){
-    console.log('ejecutando redirect');
     this.router.navigate(['/home']);
   }
 
   irProductos(){
-    console.log('ejecutando redirect');
     this.router.navigate(['/productos']);
   }
 
   irCarrito(){
-    console.log('ejecutando redirect');
     this.router.navigate(['/carrito']);
   }
 
   irCuenta(){
-    console.log('ejecutando redirect');
     this.router.navigate(['/cuenta']);
   }
   
   irLogin(){
-    console.log('ejecutando redirect');
     this.router.navigate(['/login']);
   }
 

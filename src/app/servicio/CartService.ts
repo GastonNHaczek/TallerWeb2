@@ -24,13 +24,11 @@ export class CartService {
         let productosEnCarrito=this.cart.getValue();
         if(productosEnCarrito.length!=0){
             let productoIndex= productosEnCarrito.findIndex((index) =>index.producto.id==producto.id)
-            console.log(productoIndex);
             if (productoIndex != -1) 
             productosEnCarrito[productoIndex].cantidad += 1;
         else {
             var newItem: CarritoItem = { producto:producto, cantidad: 1 };
             productosEnCarrito.push(newItem);
-            console.log(JSON.stringify(productosEnCarrito));
         }
         } else{
             productosEnCarrito = [];

@@ -111,7 +111,7 @@ router.post('/registrar', (req, res) => {
         userPool.signUp(req.body.username, req.body.password, attributeList, null, function(err, result){
             if (err) {
                 console.log(err);
-                res.json(err);
+                res.send(err);
                 return;
             }
             cognitoUser = result.user;
@@ -144,7 +144,8 @@ router.post('/login',(req,res) => {
             res.send(result);
         },
         onFailure: function(err) {
-            res.send({status: 401});
+            console.log(err);
+            res.send(err);
         }
     });
 

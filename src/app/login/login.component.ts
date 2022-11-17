@@ -29,9 +29,16 @@ export class LoginComponent implements OnInit {
     };
 
     this.loginService.login(usuarioLogin).subscribe(res => {
-      if(res.status == 401) {
+      //UserNotFoundException usuario inexistente
+      //InvalidParameterException parametros invalidos
+      //"UserNotConfirmedException" mail no confirmado
+      if(res.code == 'UserNotFoundException') {
         this.router.navigate(['login']);
         swal.fire('Email o Contraseña incorrecta', this.alerta, 'error');
+      }
+      else if(res.code == 'UserNotConfirmedException'){
+        this.router.navigate(['login']);
+        swal.fire('El email no fue verificado', this.alerta, 'error');
       }
       else {
         console.log(res);

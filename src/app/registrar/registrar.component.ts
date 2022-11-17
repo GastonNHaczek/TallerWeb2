@@ -65,8 +65,15 @@ export class RegistrarComponent implements OnInit {
         apellido:this.apellido,
         direccion:this.direccion
       };
-      this.login.signUp(usuario).subscribe(); 
-      swal.fire('Se registro correctamenta, por favor verifica tu email' , this.alerta, 'success');
-      this.router.navigate(['login']);
+      this.login.signUp(usuario).subscribe(res => {
+        if(res.code == 'UsernameExistsException') {
+          swal.fire('El email ingresado ya existe.' , this.alerta, 'error');
+          this.router.navigate(['login']);
+        }
+        else {
+          swal.fire('Se registro correctamenta, por favor verifica tu email' , this.alerta, 'success');
+          this.router.navigate(['login']);
+        }
+      }); 
   }
 }
