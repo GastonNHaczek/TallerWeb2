@@ -13,20 +13,18 @@ import { LoginService } from './servicio/LoginService';
 })
 export class AppComponent implements OnInit{
 
-  mostrar=false;
-
-  title = 'TP-TALLERWEB2';
-
+  
   constructor(
     protected router:Router,
     private cartService: CartService,
     private loginService: LoginService
   ){}
-
+    
+  mostrar=false;
+  title = 'TP-TALLERWEB2';
   productosEnCarrito: CarritoItem[]=[];
   cantidadTotal: number = 0;
   productosEnCarrito$!: Observable<Producto[]>;
-
 
   ngOnInit(): void {
     this.listarCarrito();
@@ -55,10 +53,6 @@ export class AppComponent implements OnInit{
   irCarrito(){
     this.router.navigate(['/carrito']);
   }
-
-  irCuenta(){
-    this.router.navigate(['/cuenta']);
-  }
   
   irLogin(){
     this.router.navigate(['/login']);
@@ -68,7 +62,4 @@ export class AppComponent implements OnInit{
     this.loginService.cerrarSesion();
     this.router.navigate(['/login']);
   }
-    
-
-
 }

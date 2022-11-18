@@ -3,7 +3,6 @@
   <nav class="d-flex flex-column flex-md-row justify-content-center ">
       <button type="button" class="btn btn-dark btn-lg" (click)='irHome()'>Home</button>
       <button type="button" class="btn btn-dark btn-lg" (click)='irProductos()'>Productos</button>
-      <button type="button" class="btn btn-dark btn-lg" (click)='irCuenta()'>Cuenta</button> 
       <button type="button" class="btn btn-dark btn-lg" (click)='irLogin()' *ngIf="!user">Iniciar sesion</button> 
       <button type="button" class="btn btn-dark btn-lg" (click)='cerrarSesion()' *ngIf="user != null">Cerrar sesion</button>
     </nav>

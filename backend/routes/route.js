@@ -42,8 +42,8 @@ router.post('/', (req, res) => {
 });  
 
 router.post('/carrito', (req, res) => { 
-    const{precio, cantidad} = req.body;
-    let sql = `insert into Carrito(Precio, Cantidad) values('${precio}', '${cantidad}')`;
+    const{precio, cantidad, usuario} = req.body;
+    let sql = `insert into Carrito(Precio, Cantidad, Usuario) values('${precio}', '${cantidad}', '${usuario}')`;
     conexion.query(sql, (err, rows, fields) => {
         if (err) 
             throw err;

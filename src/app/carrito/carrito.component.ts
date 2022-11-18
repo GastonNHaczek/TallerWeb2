@@ -5,6 +5,8 @@ import { Producto, ProductoService } from '../servicio/producto.service';
 import { CommonModule } from '@angular/common';
 import { CarritoItem } from '../servicio/CarritoItem';
 import swal from 'sweetalert2';
+import { LoginService } from '../servicio/LoginService';
+import { Router } from '@angular/router';
 @Component({
   
   templateUrl: './carrito.component.html',
@@ -14,7 +16,9 @@ import swal from 'sweetalert2';
 export class Carrito implements OnInit{
   
   constructor(
+    protected router:Router,
     private cartService: CartService,
+    private loginService: LoginService
   ){}
 
   productosEnCarrito: CarritoItem[]=[];
@@ -23,6 +27,7 @@ export class Carrito implements OnInit{
   productosEnCarrito$!: Observable<Producto[]>;
   alerta: string ='';
 
+  get user() {return this.loginService.user};
   ngOnInit(): void {
     this.listarCarrito();
   }
@@ -44,17 +49,23 @@ export class Carrito implements OnInit{
   }
 
   pagar(): void {
-    this.cartService.productosEnCarrito$.subscribe(
-      productos=> {
-        if(productos){
-          this.precioTotal = productos.reduce((sum, current) => sum + (current.producto.precio * current.cantidad), 0);
-          this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
-        }
-      })
-    this.cartService.pagar(this.precioTotal, this.cantidadTotal, ).subscribe();
-    swal.fire('Pago realizado', this.alerta, 'success');
-    this.productosEnCarrito = [];
-    this.cantidadTotal = 0;
+    if(this.user) {
+      this.cartService.productosEnCarrito$.subscribe(
+        productos=> {
+          if(productos){
+            this.precioTotal = productos.reduce((sum, current) => sum + (current.producto.precio * current.cantidad), 0);
+            this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
+          }
+        })
+      this.cartService.pagar(this.precioTotal, this.cantidadTotal, this.user.idToken.payload.email).subscribe();
+      swal.fire('Pago realizado', this.alerta, 'success');
+      this.productosEnCarrito = [];
+      this.cantidadTotal = 0;
+    }
+    else {
+      swal.fire('Debe iniciar sesion para realizar la compra', this.alerta, 'error');
+      this.router.navigate(['/login']);
+    }
   }
 }
 

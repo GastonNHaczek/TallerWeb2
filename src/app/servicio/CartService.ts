@@ -57,10 +57,11 @@ export class CartService {
         swal.fire('Producto eliminado correctamente', this.alerta, 'success');
     }
 
-    pagar(precio: number, cantidad: number): Observable<any> {
+    pagar(precio: number, cantidad: number, usuario: string): Observable<any> {
         let producto = {
             precio: precio,
-            cantidad: cantidad
+            cantidad: cantidad,
+            usuario: usuario
         }
         this.cart.next([]);
         let url = '/api/carrito';

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         swal.fire('El email no fue verificado', this.alerta, 'error');
       }
       else {
-        console.log(res);
+        swal.fire('Bienvenid@ ' + res.idToken.payload.email, this.alerta, 'success');
         this.router.navigate(['home']);
       }
     }); 
