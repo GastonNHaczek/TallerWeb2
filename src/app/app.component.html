@@ -5,7 +5,7 @@
       <button type="button" class="btn btn-dark btn-lg" (click)='irProductos()'>Productos</button>
       <button type="button" class="btn btn-dark btn-lg" (click)='irCuenta()'>Cuenta</button> 
       <button type="button" class="btn btn-dark btn-lg" (click)='irLogin()' *ngIf="!user">Iniciar sesion</button> 
-      <button type="button" class="btn btn-dark btn-lg" (click)='irCerrar()' *ngIf="user != null">Cerrar sesion</button>
+      <button type="button" class="btn btn-dark btn-lg" (click)='cerrarSesion()' *ngIf="user != null">Cerrar sesion</button>
     </nav>
     <div class="buscadorCarro"> 
       <img type="button" class="carroMenuImg" (click)='irCarrito()' src="../assets/shopping-cart.svg">

@@ -41,7 +41,6 @@ export class AppComponent implements OnInit{
           this.productosEnCarrito= productos;
           this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
         }
-        
       })
   }
 
@@ -65,7 +64,8 @@ export class AppComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
-  irCerrar(){
+  cerrarSesion() {
+    this.loginService.cerrarSesion();
     this.router.navigate(['/login']);
   }
     

@@ -62,6 +62,7 @@ export class CartService {
             precio: precio,
             cantidad: cantidad
         }
+        this.cart.next([]);
         let url = '/api/carrito';
         return this.http.post(url, producto);
     }

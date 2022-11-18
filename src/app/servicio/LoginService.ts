@@ -27,4 +27,8 @@ export class LoginService{
         })
         return t;
     }
+
+    cerrarSesion() {
+        this.user = null;
+    }
 }
