@@ -4,6 +4,7 @@ import { CarritoItem } from './servicio/CarritoItem';
 import { CartService } from './servicio/CartService';
 import { Producto } from './servicio/producto.service';
 import { Observable } from 'rxjs';
+import { LoginService } from './servicio/LoginService';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit{
   constructor(
     protected router:Router,
     private cartService: CartService,
+    private loginService: LoginService
   ){}
 
   productosEnCarrito: CarritoItem[]=[];
@@ -29,6 +31,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.listarCarrito();
   }
+
+  get user() { return this.loginService.user; }
 
   listarCarrito(){
     this.cartService.productosEnCarrito$.subscribe(

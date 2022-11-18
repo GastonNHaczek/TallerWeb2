@@ -13,12 +13,18 @@ export class LoginService{
     constructor(private http:HttpClient){
     }
     
+    user: any;
+
     signUp(usuario:Usuario):Observable<any>{
         let url = '/api/registrar';
         return this.http.post<Usuario>(url, usuario);
     }
     login(usuarioLogin:UsuarioLogin):Observable<any>{
         let url ='/api/login';
-        return this.http.post<UsuarioLogin>(url, usuarioLogin);
+        let t = this.http.post<UsuarioLogin>(url, usuarioLogin);
+        t.subscribe(res => {
+            this.user = res;
+        })
+        return t;
     }
 }
