@@ -49,22 +49,27 @@ export class Carrito implements OnInit{
   }
 
   pagar(): void {
-    if(this.user) {
-      this.cartService.productosEnCarrito$.subscribe(
-        productos=> {
-          if(productos){
-            this.precioTotal = productos.reduce((sum, current) => sum + (current.producto.precio * current.cantidad), 0);
-            this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
-          }
-        })
-      this.cartService.pagar(this.precioTotal, this.cantidadTotal, this.user.idToken.payload.email).subscribe();
-      swal.fire('Pago realizado', this.alerta, 'success');
-      this.productosEnCarrito = [];
-      this.cantidadTotal = 0;
+    if (this.productosEnCarrito.length > 0) {
+      if(this.user) {
+        this.cartService.productosEnCarrito$.subscribe(
+          productos=> {
+            if(productos){
+              this.precioTotal = productos.reduce((sum, current) => sum + (current.producto.precio * current.cantidad), 0);
+              this.cantidadTotal = productos.reduce((previo, actual) => previo + actual.cantidad, 0);
+            }
+          })
+        this.cartService.pagar(this.precioTotal, this.cantidadTotal, this.user.idToken.payload.email).subscribe();
+        swal.fire('Pago realizado', this.alerta, 'success');
+        this.productosEnCarrito = [];
+        this.cantidadTotal = 0;
+      }
+      else {
+        swal.fire('Debe iniciar sesion para realizar la compra', this.alerta, 'error');
+        this.router.navigate(['/login']);
+      }
     }
     else {
-      swal.fire('Debe iniciar sesion para realizar la compra', this.alerta, 'error');
-      this.router.navigate(['/login']);
+      swal.fire('Tu carrito esta vacio', this.alerta, 'warning');
     }
   }
 }
