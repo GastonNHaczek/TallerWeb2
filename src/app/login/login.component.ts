@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       //UserNotFoundException usuario inexistente
       //InvalidParameterException parametros invalidos
       //"UserNotConfirmedException" mail no confirmado
-      if(res.code == 'UserNotFoundException') {
+      if(res.code == 'UserNotFoundException' || res.code == 'NotAuthorizedException') {
         this.router.navigate(['login']);
         swal.fire('Email o Contraseña incorrecta', this.alerta, 'error');
       }
