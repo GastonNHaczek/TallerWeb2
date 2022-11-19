@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-body{background: rgba(146, 146, 146, 0.596);}
+body{background-image: url(https://img.freepik.com/vector-gratis/copia-espacio-azul-circuitos-fondo-digital_23-2148821699.jpg?w=740&t=st=1668866751~exp=1668867351~hmac=df459a43c6db5dd9fe3fa031fbf3f8a4bb1de820112ff1231672a4c3f0205c73);
+background-size: 100% 100%;}
 footer{
     color: white;
     background: black;
